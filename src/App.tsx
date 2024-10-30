@@ -5,7 +5,6 @@ import DepositWithdrawForm from './components/DepositWithdrawForm';
 import TransactionStatus from './components/TransactionStatus';
 import useSushiBar from './hooks/useSushiBar';
 import './styles.css';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 const App: React.FC = () => {
   const { sushiBalance, vaultBalance, status, deposit, withdraw, getBalance } = useSushiBar();
@@ -17,7 +16,6 @@ const App: React.FC = () => {
   return (
     <div className="container">
       <h1>Sushi Vault</h1>
-      <ConnectButton />
       <BalanceDisplay sushiBalance={sushiBalance} vaultBalance={vaultBalance} />
       <DepositWithdrawForm onDeposit={deposit} onWithdraw={withdraw} />
       <TransactionStatus status={status} />
