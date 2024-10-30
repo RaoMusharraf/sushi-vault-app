@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// App.tsx
+import React, { useEffect } from 'react';
+import BalanceDisplay from './components/BalanceDisplay';
+import DepositWithdrawForm from './components/DepositWithdrawForm';
+import TransactionStatus from './components/TransactionStatus';
+import useSushiBar from './hooks/useSushiBar';
+import './styles.css';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
-function App() {
+const App: React.FC = () => {
+  const { sushiBalance, vaultBalance, status, deposit, withdraw, getBalance } = useSushiBar();
+
+  useEffect(() => {
+    getBalance()
+  }, [sushiBalance, vaultBalance])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1>Sushi Vault</h1>
+      <ConnectButton />
+      <BalanceDisplay sushiBalance={sushiBalance} vaultBalance={vaultBalance} />
+      <DepositWithdrawForm onDeposit={deposit} onWithdraw={withdraw} />
+      <TransactionStatus status={status} />
     </div>
   );
-}
+};
 
 export default App;
