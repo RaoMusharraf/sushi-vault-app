@@ -1,8 +1,8 @@
 import React from 'react';
 
 interface BalanceDisplayProps {
-    sushiBalance: number; // Replace `number` with `string` if balance is a string
-    vaultBalance: number; // Replace `number` with `string` if balance is a string
+    sushiBalance: String; // Replace `number` with `string` if balance is a string
+    vaultBalance: String; // Replace `number` with `string` if balance is a string
 }
 
 const BalanceDisplay: React.FC<BalanceDisplayProps> = ({ sushiBalance, vaultBalance }) => (

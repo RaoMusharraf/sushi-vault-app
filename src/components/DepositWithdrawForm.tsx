@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../styles.css';
 
 interface DepositWithdrawFormProps {
     onDeposit: (amount: number) => void;
@@ -13,8 +14,8 @@ const DepositWithdrawForm: React.FC<DepositWithdrawFormProps> = ({ onDeposit, on
     };
 
     return (
-        <div>
-            <input type="number" value={amount} onChange={handleChange} />
+        <div className='button-container'>
+            <input type="number" onChange={handleChange} placeholder="Enter Amount" />
             <button onClick={() => onDeposit(amount)}>Deposit</button>
             <button onClick={() => onWithdraw(amount)}>Withdraw</button>
         </div>
