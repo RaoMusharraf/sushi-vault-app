@@ -9,15 +9,13 @@ const useSushiBar = () => {
     const { data: signer } = useWalletClient();
     const [sushiBalance, setSushiBalance] = useState<String>("0");
     const [vaultBalance, setVaultBalance] = useState<String>("0");
+    const [approve, setApprove] = useState<String>("0");
     const [status, setStatus] = useState<string>('');
 
     const getBalance = async () => {
         if (address) {
-            console.log("******address", address);
-
             let balanceInGwei = await sushiToken.methods.balanceOf(address).call()
             const balanceInEth = Web3.utils.fromWei(balanceInGwei, "gwei");
-            console.log("*****balanceInEth", balanceInEth);
             setSushiBalance(balanceInEth);
 
             let shares = (await sushiVaultToken.methods.balanceOf(address).call()).toString()
@@ -27,23 +25,8 @@ const useSushiBar = () => {
     };
     const deposit = async (amount: number) => {
         try {
-            // let data = sushiToken.methods.approve(address, amount).encodeABI();
-            // let transaction = { to: sushiTokenAddress, chainId: 1, data };
-            // //@ts-ignore
-            // const txResponse = await signer.sendTransaction(transaction);
-            // const txReceipt = await provider.waitForTransaction(txResponse);
 
-            // if (txReceipt && txReceipt.status === 1) {
-            console.log("*****amount", amount.toString());
-            console.log("*****sushiVaultToken.methods", sushiVaultAddress);
-            console.log("*****sushiTokenAddress", sushiTokenAddress);
-            console.log("*****methods", sushiVaultToken.methods);
-
-
-
-            let vaultTokenData = sushiVaultToken.methods.ZapIn(amount.toString(), sushiTokenAddress).encodeABI();
-            console.log("*****sushiTokenAddress", vaultTokenData);
-
+            let vaultTokenData = sushiVaultToken.methods.ZapIn(amount, sushiTokenAddress).encodeABI();
             let txVaultToken = { to: sushiVaultAddress, chainId: 1, data: vaultTokenData };
             //@ts-ignore
             const txR = await signer.sendTransaction(txVaultToken);
@@ -51,7 +34,20 @@ const useSushiBar = () => {
             if (txRecp && txRecp.status === 1) {
                 setStatus('deposit successful');
             }
-            // } else setStatus('Failed');
+
+        } catch (error) { setStatus("Error") }
+    };
+    const approveTokens = async (amount: number) => {
+        try {
+            let data = sushiToken.methods.approve(address, amount).encodeABI();
+            let transaction = { to: sushiTokenAddress, chainId: 1, data: data };
+            //@ts-ignore
+            const txResponse = await signer.sendTransaction(transaction);
+            const txReceipt = await provider.waitForTransaction(txResponse);
+
+            if (txReceipt && txReceipt.status === 1) {
+                setStatus('deposit successful');
+            } else setStatus('Failed');
 
         } catch (error) { setStatus("Error") }
     };
@@ -69,7 +65,7 @@ const useSushiBar = () => {
         } catch (error) { setStatus("Error") }
     };
 
-    return { sushiBalance, vaultBalance, status, address, deposit, withdraw, getBalance };
+    return { sushiBalance, vaultBalance, status, address, deposit, withdraw, getBalance, approveTokens };
 };
 
 export default useSushiBar;

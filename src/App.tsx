@@ -9,7 +9,7 @@ import '@rainbow-me/rainbowkit/styles.css';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 const App: React.FC = () => {
-  const { sushiBalance, vaultBalance, status, address, deposit, withdraw, getBalance } = useSushiBar();
+  const { sushiBalance, vaultBalance, status, address, approveTokens, deposit, withdraw, getBalance } = useSushiBar();
   useEffect(() => { getBalance() }, [sushiBalance, vaultBalance, address])
 
   return (
@@ -17,7 +17,7 @@ const App: React.FC = () => {
       <ConnectButton />
       <h1>Sushi Vault</h1>
       <BalanceDisplay sushiBalance={sushiBalance} vaultBalance={vaultBalance} />
-      <DepositWithdrawForm onDeposit={deposit} onWithdraw={withdraw} />
+      <DepositWithdrawForm onDeposit={deposit} onWithdraw={withdraw} onApprove={approveTokens} />
       <TransactionStatus status={status} />
     </div>
   );

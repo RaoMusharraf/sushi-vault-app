@@ -9,7 +9,7 @@ const BalanceDisplay: React.FC<BalanceDisplayProps> = ({ sushiBalance, vaultBala
     <div>
         <h2>Balance Information</h2>
         <p>Sushi Balance: {sushiBalance}</p>
-        <p>Vault Share Balance: {vaultBalance}</p>
+        <p>Vault Balance: {vaultBalance}</p>
     </div>
 );
 
