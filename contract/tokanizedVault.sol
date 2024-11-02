@@ -34,9 +34,7 @@ contract ERC4626Vault is ERC20, IERC4626, ReentrancyGuard {
 
     uint24 public constant poolFee = 500;
 
-    // address public constant Usdt = 0xFeFB530e8393b1DD8C2ccde21b2baA9805FC94AE;
     address public constant Sushi = 0xB6ffC8FD1915d24f43De8FAE8B89855837138935;
-    address public WETH = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
     address public constant SushiBar = 0x4C3c929B59B09f6DfE330FDe9c96174599F4A03F;
     address public constant routerAddress = 0x0b343475d44EC2b4b8243EBF81dc888BF0A14b36;
     ISwapRouter public immutable swapRouter = ISwapRouter(routerAddress);
