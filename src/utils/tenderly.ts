@@ -1,1 +1,1 @@
-export const tenderlyRpcProvider = 'https://virtual.mainnet.rpc.tenderly.co/26eacbb2-e1e2-4037-b2e2-c52739e52804';
+export const tenderlyRpcProvider = 'https://virtual.mainnet.rpc.tenderly.co/e731ddd8-91ef-48df-9f62-86b0bd73701f';

@@ -1,5 +1,5 @@
 {
-    "address":"0xB6ffC8FD1915d24f43De8FAE8B89855837138935",
+    "address":"0xe699bcbcb6915e6210e63e229EB5f8160b8331b3",
     "abi":[
 	{
 		"inputs": [
@@ -328,7 +328,7 @@
 	},
 	{
 		"inputs": [],
-		"name": "UsdtToken",
+		"name": "WETH",
 		"outputs": [
 			{
 				"internalType": "address",
@@ -353,6 +353,24 @@
 			}
 		],
 		"name": "ZapIn",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "amountIn",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "tokenAddress",
+				"type": "address"
+			}
+		],
+		"name": "ZapOut",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -500,19 +518,6 @@
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "linkToken",
-		"outputs": [
-			{
-				"internalType": "contract IERC20",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"inputs": [
 			{
 				"internalType": "uint256",
@@ -602,35 +607,6 @@
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "amountIn",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "recipientAddresss",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "tokenAddress",
-				"type": "address"
-			}
-		],
-		"name": "swapExactInputSingle",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "amountOut",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -767,5 +743,5 @@
 		"stateMutability": "nonpayable",
 		"type": "function"
 	}
-	]
+]
 }
