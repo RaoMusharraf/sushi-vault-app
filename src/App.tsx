@@ -1,24 +1,18 @@
-// App.tsx
-import React, { useEffect } from 'react';
-import BalanceDisplay from './components/BalanceDisplay';
+import React from 'react';
 import DepositWithdrawForm from './components/DepositWithdrawForm';
-import TransactionStatus from './components/TransactionStatus';
 import useSushiBar from './hooks/useSushiBar';
 import './styles.css';
 import '@rainbow-me/rainbowkit/styles.css';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 const App: React.FC = () => {
-  const { sushiBalance, vaultBalance, status, address, approveTokens, deposit, withdraw, getBalance } = useSushiBar();
-  useEffect(() => { getBalance() }, [sushiBalance, vaultBalance, address])
+  const { status, approveTokens, deposit, withdraw } = useSushiBar();
 
   return (
     <div className="container">
       <ConnectButton />
       <h1>Sushi Vault</h1>
-      <BalanceDisplay sushiBalance={sushiBalance} vaultBalance={vaultBalance} />
-      <DepositWithdrawForm onDeposit={deposit} onWithdraw={withdraw} onApprove={approveTokens} />
-      <TransactionStatus status={status} />
+      <DepositWithdrawForm onDeposit={deposit} onWithdraw={withdraw} onApprove={approveTokens} status={status} />
     </div>
   );
 };
