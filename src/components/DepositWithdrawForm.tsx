@@ -50,8 +50,8 @@ const DepositWithdrawForm: React.FC<DepositWithdrawFormProps> = ({ onDeposit, on
     return (
         <> <div><BalanceDisplay sushiBalance={sushiBalance} vaultBalance={vaultBalance} /></div>
             <div className='button-container'>
-                <input type="number" onChange={handleChange} placeholder="Enter Amount" />
                 <input type="String" onChange={handleChangeToken} placeholder="Enter Token Address" />
+                <input type="number" onChange={handleChange} placeholder="Enter Amount" />
                 {approve < amount ? <button onClick={() => onApprove(amount, tokenAddress)}>Approve</button> : <button onClick={() => onDeposit(amount, tokenAddress)}>Deposit</button>}
                 <button onClick={() => onWithdraw(amount, tokenAddress)}>Withdraw</button>
             </div>
