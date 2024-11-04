@@ -1,26 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import DepositWithdrawForm from './components/DepositWithdrawForm';
+import useSushiBar from './hooks/useSushiBar';
+import './styles.css';
+import '@rainbow-me/rainbowkit/styles.css';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
-function App() {
+const App: React.FC = () => {
+  const { status, approveTokens, deposit, withdraw } = useSushiBar();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <ConnectButton />
+      <h1>Sushi Vault</h1>
+      <DepositWithdrawForm onDeposit={deposit} onWithdraw={withdraw} onApprove={approveTokens} status={status} />
     </div>
   );
-}
+};
 
 export default App;
